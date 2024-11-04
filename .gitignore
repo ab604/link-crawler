@@ -1,0 +1,10 @@
+guidance.md
+send_email.yaml
+*.qmd
+old-workflows/
+old-scripts/
+node_modules/
+.venv
+.vscode
+*.txt
+test.csv
