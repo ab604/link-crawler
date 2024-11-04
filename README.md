@@ -3,13 +3,15 @@ Last Updated on 2024-11-04
 
 # Library Website Link Checking Workflow
 
-A workflow for crawling, collecting, and validating links on library
-websites. This workflow consists of three main components working
-together through GitHub Actions automation.
+A workflow for crawling, collecting, and validating links on University
+of Southampton Library website. This workflow consists of three main
+components working together through GitHub Actions automation.
 
 It is designed to balance speed and breadth against exhaustive checking,
 so do not expect to capture every possible failure. The workflow should
 run in around an hour.
+
+This workflow can be adapted for any website.
 
 ## Overview
 
