@@ -148,7 +148,7 @@ jobs:
         convert_markdown: true
         # attachments: ${{ env.ATTACHMENT }}
         to: ${{secrets.LIB_EMAIL_RECIPIENT}}
-        cc: ${{secrets.EMAIL_RECIPIENT}}
+        cc: ${{secrets.EMAIL_RECIPIENT}}, ${{secrets.AB_EMAIL_RECIPIENT}}
         from: Library Linkchecker ${{secrets.EMAIL_SENDER}}
         priority: normal
         secure: true
