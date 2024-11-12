@@ -326,7 +326,7 @@
         });
 
         // Set current date
-        document.getElementById("reportDate").textContent = new Date().toLocaleDateString();
+        document.getElementById("reportDate").textContent = new Date().toISOString().split('T')[0];
 
         document.getElementById('searchInput').addEventListener('input', function() {
             const searchTerm = this.value.toLowerCase();

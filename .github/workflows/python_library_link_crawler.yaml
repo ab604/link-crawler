@@ -4,7 +4,7 @@ name: Library Python Link Crawler
 # Define when the workflow should run
 on:
   schedule:
-    - cron: '0 1 12 1-12 *'  # Run once a month on the 12th day of the month at 0100 UTC
+    - cron: '0 1 13 1-12 *'  # Run once a month on the 13th day of the month at 0100 UTC
   workflow_dispatch:  # Allow manual triggering of the workflow
 
 # Set explicit permissions for the workflow
@@ -101,11 +101,11 @@ jobs:
       run: |
         if grep -q "404" "${{ env.REPORT_FILE }}"; then
           echo "broken_links_found=true" >> $GITHUB_OUTPUT
-          echo "STATUS_MESSAGE=Broken 404 links have been detected on the Library website. For more information, please visit: [https://ab604.github.io/link-checker/](https://ab604.github.io/link-checker/)." >> $GITHUB_ENV
+          echo "STATUS_MESSAGE=Broken 404 links have been detected on the Library website. For more information, please visit: [https://ab604.github.io/link-crawler/](https://ab604.github.io/link-crawler/)." >> $GITHUB_ENV
           echo "ATTACHMENT=${{ env.REPORT_404_FILE }},${{ env.REPORT_FILE }}" >> $GITHUB_ENV
         else
           echo "broken_links_found=false" >> $GITHUB_OUTPUT
-          echo "STATUS_MESSAGE=No 404 broken links found on the Library website. For more information, please visit: [https://ab604.github.io/link-checker/](https://ab604.github.io/link-checker/)." >> $GITHUB_ENV
+          echo "STATUS_MESSAGE=No 404 broken links found on the Library website. For more information, please visit: [https://ab604.github.io/link-crawler/](https://ab604.github.io/link-crawler/)." >> $GITHUB_ENV
           echo "ATTACHMENT=${{ env.REPORT_FILE }}" >> $GITHUB_ENV
         fi
 
