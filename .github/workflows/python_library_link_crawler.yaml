@@ -10,9 +10,19 @@ on:
 # Set explicit permissions for the workflow
 permissions:
     contents: write  # Allow writing to repository contents
+    pages: write
+    id-token: write
+
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
 
 jobs:
   linkchecker:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
     # Check out the repository code
@@ -91,11 +101,11 @@ jobs:
       run: |
         if grep -q "404" "${{ env.REPORT_FILE }}"; then
           echo "broken_links_found=true" >> $GITHUB_OUTPUT
-          echo "STATUS_MESSAGE=Broken 404 links have been detected on the Library website. For details, please visit: [https://ab604.github.io/link-checker/](https://ab604.github.io/link-checker/)." >> $GITHUB_ENV
+          echo "STATUS_MESSAGE=Broken 404 links have been detected on the Library website. For more information, please visit: [https://ab604.github.io/link-checker/](https://ab604.github.io/link-checker/)." >> $GITHUB_ENV
           echo "ATTACHMENT=${{ env.REPORT_404_FILE }},${{ env.REPORT_FILE }}" >> $GITHUB_ENV
         else
           echo "broken_links_found=false" >> $GITHUB_OUTPUT
-          echo "STATUS_MESSAGE=No 404 broken links found. For details, please visit: [https://ab604.github.io/link-checker/](https://ab604.github.io/link-checker/)." >> $GITHUB_ENV
+          echo "STATUS_MESSAGE=No 404 broken links found on the Library website. For more information, please visit: [https://ab604.github.io/link-checker/](https://ab604.github.io/link-checker/)." >> $GITHUB_ENV
           echo "ATTACHMENT=${{ env.REPORT_FILE }}" >> $GITHUB_ENV
         fi
 
@@ -144,7 +154,50 @@ jobs:
         secure: true
       env:
         STATUS_MESSAGE: ${{ env.STATUS_MESSAGE }}
-        ATTACHMENT: ${{ env.ATTACHMENT }}
+        # ATTACHMENT: ${{ env.ATTACHMENT }}
+
+    # Prepare website directory for deployment
+    - name: Prepare website artifacts
+      if: always()
+      run: |
+        # Create output directory
+        mkdir -p _site
+    
+        # Verbose logging for debugging
+        echo "Preparing website artifacts in $(pwd)"
+        ls -la
+
+        # Copy essential files
+        cp index.html _site/
+        cp black-stag.svg _site/ # Add the logo
+        cp white-stag.svg _site/
+
+        # Copy link reports with error handling
+        if [[ -f "${{ env.REPORT_FILE }}" ]]; then
+          cp "${{ env.REPORT_FILE }}" _site/all_links.csv
+        else
+          echo "Warning: Link report file not found"
+        fi
+
+        # Conditionally copy 404 report
+        if [[ -f "${{ env.REPORT_404_FILE }}" ]]; then
+          cp "${{ env.REPORT_404_FILE }}" _site/broken_links.csv
+        else
+          echo "No broken links report found"
+        fi
+        
+    # Setup and deploy to GitHub Pages
+    - name: Setup Pages
+      uses: actions/configure-pages@v4
+
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: '_site'
+
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
 
     # Prevent GitHub from disabling the workflow due to inactivity
     - name: Keepalive Workflow
