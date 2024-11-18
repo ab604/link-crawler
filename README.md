@@ -75,8 +75,8 @@ no commits are made to the repository.
 
 ## Github Pages Report
 
-The Github Pages report displays two tables: All links and Broken links
-(404).
+The Github Pages report is built from the `index.html` file. It displays
+two tables: All links and Broken links (404).
 
 - All links is the table that includes both working and broken links.
 - Broken links (404) is the table that includes only broken links.
