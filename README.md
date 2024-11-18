@@ -10,27 +10,27 @@ collecting and checking the status of links on the
 ## Link Collection
 
 For link collection, the script crawls links found on the home page to
-other pages, for up to 3 levels of recursion. Here’s an imaginary
+other pages, for up to 3 levels of recursion. Here’s an **imaginary**
 example:
 
-1.  Initial crawl: library.soton.ac.uk
-    - Finds links to library.soton.ac.uk/about and
-      library.soton.ac.uk/search
+1.  Initial crawl: `library.soton.ac.uk`
+    - Finds links to `library.soton.ac.uk/about` and
+      `library.soton.ac.uk/search`
 2.  Next level of recursion:
-    - Crawls library.soton.ac.uk/about and finds links to
-      library.soton.ac.uk/about/team and
-      library.soton.ac.uk/about/contact
-    - Crawls library.soton.ac.uk/search and finds links to
-      library.soton.ac.uk/search/databases and
-      library.soton.ac.uk/search/ejournals
+    - Crawls `library.soton.ac.uk/about` and finds links to
+      `library.soton.ac.uk/about/team` and
+      `library.soton.ac.uk/about/contact`
+    - Crawls `library.soton.ac.uk/search` and finds links to
+      `library.soton.ac.uk/search/databases` and
+      `library.soton.ac.uk/search/ejournals`
 3.  Third level of recursion:
-    - Crawls library.soton.ac.uk/about/team and finds links to
+    - Crawls `library.soton.ac.uk/about/team` and finds links to
       individual staff profiles
-    - Crawls library.soton.ac.uk/about/contact and finds links to
-      contact forms or email addresses
-    - Crawls library.soton.ac.uk/search/databases and finds links to
+    - Crawls `library.soton.ac.uk/about/contact` and finds links to
+      contact forms
+    - Crawls `library.soton.ac.uk/search/databases` and finds links to
       specific database pages
-    - Crawls library.soton.ac.uk/search/ejournals and finds links to
+    - Crawls `library.soton.ac.uk/search/ejournals` and finds links to
       specific e-journal pages
 
 We could recurse further, but this depth seemed appropriate to capture
@@ -69,9 +69,9 @@ The workflow runs the link crawler, link checker, and the publishes the
 results to Github Pages and sends an email notification as to whether
 404 broken links were found or not, along with a link to the results.
 
-The workflow is also commits the CSV files of links to the repository
-and has a job to keep the workflow alive even if no commits are made to
-the repository.
+The workflow is also commits the CSV files of links to the repository in
+the `reports` directory and has a job to keep the workflow alive even if
+no commits are made to the repository.
 
 ## Github Pages Report
 
@@ -86,8 +86,8 @@ The table displays these columns:
 - URL is the URL of the checked link.
 - Status Code is the HTTP status code of the checked link.
 - Status Emoji is a visual indicator of the status code: 💙 for 200 OK,
-  💔 for 404 broken, 😕 for any other status. -Page Found On is the
-  webpage on which the link occurs.
+  💔 for 404 broken, 😕 for any other status.
+- Page Found On is the webpage on which the link occurs.
 
 The table can be filtered using the search box and either the filtered
 or unfiltered data can be downloaded as a CSV file.
