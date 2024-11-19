@@ -1,5 +1,5 @@
 # Workflow to get and check links on the Library site
-name: Library Python Link Crawler
+name: Library Link Crawler
 
 # Define when the workflow should run
 on:
@@ -149,7 +149,7 @@ jobs:
         # attachments: ${{ env.ATTACHMENT }}
         to: ${{secrets.LIB_EMAIL_RECIPIENT}}
         cc: ${{secrets.EMAIL_RECIPIENT}}, ${{secrets.AB_EMAIL_RECIPIENT}}
-        from: Library Linkchecker ${{secrets.EMAIL_SENDER}}
+        from: Library Linkchecker # ${{secrets.GMAIL_USERNAME}}
         priority: normal
         secure: true
       env:

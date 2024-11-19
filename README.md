@@ -76,12 +76,11 @@ The workflow uses the following secrets in the GitHub repository:
 
 - `LIB_URL`: Base URL for the link collection (this isn’t necessary as a
   secret, but makes updating easier in the future)
-- `GMAIL_USERNAME`: SMTP email username for email notification
+- `GMAIL_USERNAME`: Gmail email address used for email notification
 - `GMAIL_PASSWORD`: App Password for email notification. See [Create App
   passwords](https://knowledge.workspace.google.com/kb/how-to-create-app-passwords-000009237)
 - `LIB_EMAIL_RECIPIENT`: Primary email recipient
 - `EMAIL_RECIPIENT`: CC email recipient (if desired)
-- `EMAIL_SENDER`: Gmail address used for email notification
 
 ## Github Pages Report
 
