@@ -9,3 +9,5 @@ node_modules/
 *.txt
 test.csv
 old-README.md
+all_links.csv
+broken_links.csv
