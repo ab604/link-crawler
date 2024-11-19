@@ -1,7 +1,6 @@
-
-Last Updated on 2024-11-18
-
 # Library Website Link Checker
+
+Last Updated on 2024-11-19
 
 This repository contains the python code and yaml workflow for
 collecting and checking the status of links on the
@@ -73,10 +72,21 @@ The workflow is also commits the CSV files of links to the repository in
 the `reports` directory and has a job to keep the workflow alive even if
 no commits are made to the repository.
 
+The workflow uses the following secrets in the GitHub repository:
+
+- `LIB_URL`: Base URL for the link collection (this isn’t necessary as a
+  secret, but makes updating easier in the future)
+- `GMAIL_USERNAME`: SMTP email username for email notification
+- `GMAIL_PASSWORD`: App Password for email notification. See [Create App
+  passwords](https://knowledge.workspace.google.com/kb/how-to-create-app-passwords-000009237)
+- `LIB_EMAIL_RECIPIENT`: Primary email recipient
+- `EMAIL_RECIPIENT`: CC email recipient (if desired)
+- `EMAIL_SENDER`: Gmail address used for email notification
+
 ## Github Pages Report
 
 The Github Pages report is built from the `index.html` file. It displays
-two tables: All links and Broken links (404).
+two tables: **All links** and **Broken links (404)**.
 
 - All links is the table that includes both working and broken links.
 - Broken links (404) is the table that includes only broken links.
