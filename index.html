@@ -359,7 +359,7 @@
             }
         }
 
-        // Replace the existing search event listener with this:
+        // Set-up search event listener:
         document.querySelector('.search-container').addEventListener('input', function(event) {
             if (event.target.id === 'searchInput') {
                 const searchTerm = event.target.value.toLowerCase();

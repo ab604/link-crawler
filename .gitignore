@@ -1,9 +1,7 @@
 guidance.md
 send_email.yaml
 *.qmd
-old-workflows/
-old-scripts/
-node_modules/
+old-code/
 .venv
 .vscode
 *.txt
