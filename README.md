@@ -1,6 +1,9 @@
 # Library Website Link Checker
 
-Last Updated on 2024-11-19
+Last Updated on 2024-12-17
+
+This repo has been retired here and is now at
+<https://github.com/UniSotonLibrary/link-crawler>
 
 This repository contains the python code and yaml workflow for
 collecting and checking the status of links on the
